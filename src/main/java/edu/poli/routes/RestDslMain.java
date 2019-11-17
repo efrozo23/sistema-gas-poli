@@ -22,7 +22,7 @@ public class RestDslMain extends RouteBuilder {
 	@Autowired
 	private Environment env;
 	
-	@Value("${camel.component.servlet.mapping.context-path}")
+	@Value("${server.servlet-path}")
     private String contextPath;
 
 	@Override
