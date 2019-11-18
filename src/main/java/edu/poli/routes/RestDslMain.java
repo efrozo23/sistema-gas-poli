@@ -14,7 +14,7 @@ import edu.poli.beans.ReciveData;
 
 
 
-@Component
+
 public class RestDslMain extends RouteBuilder {
 	
 	

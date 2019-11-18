@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +17,7 @@ import edu.poli.dto.Request;
 @Controller
 public class WebSocketController {
 	
-	private Logger logger = LoggerFactory.getLogger(WebSocketController.class);
+	public static Logger logger = LoggerFactory.getLogger(WebSocketController.class);
 	
 	@Autowired
 	private SimpMessagingTemplate simpleMessagingTemplate;
@@ -40,7 +39,8 @@ class SensorController{
 	private SimpMessagingTemplate simpleMessagingTemplate;
 	
 	@PostMapping("/persis")
-	public ResponseEntity<?> getTest(@RequestBody Request r) {
+	public ResponseEntity<?> getTest(@RequestBody String r) {
+		WebSocketController.logger.info("Ingreso a consumir servicio:{}",r);
 		simpleMessagingTemplate.convertAndSend("/chat", r);
 		return new ResponseEntity<>("OK",HttpStatus.OK);
 	}
